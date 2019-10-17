@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'chase',
 	password: 'Shadow27528',
-	database: 'Bamazon', 
+	database: 'bamazon_db', 
 });
 
 var newDept = [];

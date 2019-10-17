@@ -31,15 +31,14 @@ The final option allows the user to add a new product to the inventory. Prompts 
 
 The Bamazon Executive Portal allows users to view the profits of the store by department with the ability to add new departments.
 
-Bamazon Executive Portal
 
-Contributors:
+**Contributors:**
 
 Chase Cannon [GitHub](https://github.com/cannon27528)
 
-Technologies Used:
+**Technologies Used:**
 
-Javascript
+JavaScript
 nodeJS
 MySQL
 npm packages:

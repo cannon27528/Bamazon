@@ -112,3 +112,48 @@ var purchase = function(){
 	})
 
 };
+var global_json_data;
+$(document).ready(function() {
+    var json_source = "https://spreadsheets.google.com/feeds/list/0ApL1zT2P00q5dG1wOUMzSlNVV3VRV2pwQ2Fnbmt3M0E/od7/public/basic?alt=json";
+    var string_data ="";
+    var json_data = $.ajax({
+        dataType: 'json', // Return JSON
+        url: json_source,
+        success: function(data){
+            var data_obj = [];
+            for (i=0; i<data.feed.entry.length; i++){
+                var el = {'key': data.feed.entry[i].title['$t'], 'value': '<p><a href="'+data.feed.entry[i].content['$t']+'>'+data.feed.entry[i].title['$t']+'</a></p>'};
+                data_obj.push(el)};
+
+            console.log("data grabbed");  
+            global_json_data =   data_obj;
+
+            return data_obj;
+
+
+        },      
+
+        error: function(jqXHR, textStatus, errorThrown){ 
+                        $('#results_box').html('<h2>Something went wrong!</h2><p><b>' + textStatus  + '</b> ' + errorThrown  + '</p>');
+        }
+    }); 
+
+    $(':submit').click(function(event){
+        var json_data = global_json_data;
+        event.preventDefault();
+        console.log(json_data.length);
+
+        //function
+        if ($('#place').val() !=''){
+            var copy_string = $('#place').val();
+            var converted_string = copy_string;
+            for (i=0; i<json_data.length; i++){
+                //console_log(data.feed.entry[i].title['$t']);
+                converted_string = converted_string.replace(json_data.feed.entry[i].title['$t'], 
+                    '<a href="'+json_data.feed.entry[i].content['$t']+'>'+json_data.feed.entry[i].title['$t']+'</a>');
+            }  
+            $('#results_box').text(converted_string).html();
+        }
+    });
+
+});//document ready end 
