@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var prompt = require('prompt');
+var prompt = require('inquirer');
 var colors = require('colors/safe');
 var Table = require('cli-table');
 var connection = mysql.createConnection({
